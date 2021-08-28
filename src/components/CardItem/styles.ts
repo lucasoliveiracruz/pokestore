@@ -1,32 +1,30 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-interface IFoodPlateProps {
+interface ItemProps {
   available: boolean;
 }
 
-export const Container = styled.div<IFoodPlateProps>`
-  background: ${({ theme }) => theme.color.shape};
+export const Container = styled.div<ItemProps>`
+  background: #fff;
   border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.color.shape};
+
+  width: 320px;
 
   header {
-    background: ${({ theme }) => theme.color.gray_light};
     border-radius: 8px 8px 0px 0px;
     height: 192px;
     overflow: hidden;
     transition: 0.3s opacity;
     text-align: center;
-
-    ${(props) =>
-      !props.available &&
-      css`
-        opacity: 0.3;
-      `};
+    padding: 16px 0px;
 
     img {
       pointer-events: none;
       user-select: none;
-      object-fit: cover;
+      object-fit: contain;
       width: 100%;
+      height: 100%;
     }
   }
 
@@ -37,7 +35,7 @@ export const Container = styled.div<IFoodPlateProps>`
     }
     p {
       color: ${({ theme }) => theme.color.gray_dark};
-      margin-top: 16px;
+      margin: 4px 0 8px;
     }
     .price {
       font-style: normal;
@@ -55,15 +53,21 @@ export const Container = styled.div<IFoodPlateProps>`
     justify-content: space-between;
     align-items: center;
     padding: 20px 30px;
-    background: ${({ theme }) => theme.color.gray_light};
+    background: ${({ theme }) => theme.color.primary};
     border-radius: 0px 0px 8px 8px;
 
     width: 100%;
 
+    span {
+      color: ${({ theme }) => theme.color.white};
+      font-size: 20px;
+      font-weight: bold;
+    }
+
     button {
       background: ${({ theme }) => theme.color.white};
       padding: 10px;
-      border-radius: 8px;
+      border-radius: 50%;
       display: flex;
       border: none;
       transition: 0.1s;

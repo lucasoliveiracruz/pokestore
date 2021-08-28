@@ -1,6 +1,7 @@
 import React from "react";
 
-import { RiAddLine, RiSubtractLine } from "react-icons/ri";
+import { RiAddLine } from "react-icons/ri";
+import { useTheme } from "styled-components";
 
 import { Container } from "./styles";
 
@@ -18,6 +19,7 @@ interface CardItemProps {
 }
 
 export function CardItem({ item }: CardItemProps) {
+  const theme = useTheme();
   return (
     <Container available={item.available}>
       <header>
@@ -31,12 +33,9 @@ export function CardItem({ item }: CardItemProps) {
         </p>
       </section>
       <section className="footer">
-        <button type="button" className="icon" onClick={() => {}}>
-          <RiSubtractLine size={20} />
-        </button>
-
-        <button type="button" className="icon" onClick={() => {}}>
-          <RiAddLine size={20} />
+        <span>Adicionar ao carrinho</span>
+        <button type="button" className="icon" onClick={() => alert("UHULLLL")}>
+          <RiAddLine size={24} />
         </button>
       </section>
     </Container>
