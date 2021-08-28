@@ -2,17 +2,19 @@ import { Logo } from "./Logo";
 import { CartNav } from "./CartNav";
 import { SearchBox } from "./SearchBox";
 
-import { Container, RightContent } from "./styles";
+import { Container, Content, RightContent } from "./styles";
 
 export function Header() {
   return (
     <Container>
-      <Logo />
-      <SearchBox />
+      <Content>
+        <Logo />
+        <SearchBox />
 
-      <RightContent>
-        <CartNav />
-      </RightContent>
+        <RightContent>
+          <CartNav />
+        </RightContent>
+      </Content>
     </Container>
   );
 }
