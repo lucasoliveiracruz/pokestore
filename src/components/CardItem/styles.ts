@@ -9,7 +9,8 @@ export const Container = styled.div<ItemProps>`
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.color.shape};
 
-  width: 320px;
+  min-width: 320px;
+  max-width: 350px;
 
   header {
     border-radius: 8px 8px 0px 0px;
