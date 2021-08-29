@@ -6,10 +6,10 @@ import { NavContainer } from "./styles";
 
 export function CartNav() {
   const theme = useTheme();
-  const { products } = useCart();
+  const { cartProducts } = useCart();
 
   function getCounter() {
-    return products?.length > 9 ? "+9" : products?.length ?? 0;
+    return cartProducts?.length > 9 ? "+9" : cartProducts?.length ?? 0;
   }
 
   return (

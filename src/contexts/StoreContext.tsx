@@ -10,6 +10,7 @@ import { getTranslation } from "../translations";
 interface StoreContextData {
   setStore: (store: PokeStores) => void;
   store: PokeStore;
+  currentStore: PokeStores;
 }
 
 interface StoreProviderProps {
@@ -24,24 +25,30 @@ export function StoreProvider({
   store: pokeStore,
 }: StoreProviderProps) {
   const [store, setStore] = useState<PokeStore>({} as PokeStore);
+  const [currentStore, setCurrentStore] = useState<PokeStores>(
+    "" as PokeStores
+  );
 
   useEffect(() => {
     changeStore(pokeStore);
   }, [pokeStore]);
 
   function changeStore(store: PokeStores): void {
-    const theme = getStoreTheme(store);
+    const { theme, logo } = getStoreTheme(store);
     const translations = getTranslation(store);
 
+    setCurrentStore(store);
     setStore({
       theme,
       translations,
-      config: { name: store.toLocaleLowerCase(), logo: "", store },
+      config: { name: store.toLocaleLowerCase(), logo },
     });
   }
 
   return (
-    <StoreContext.Provider value={{ setStore: changeStore, store }}>
+    <StoreContext.Provider
+      value={{ setStore: changeStore, store, currentStore }}
+    >
       {store.theme && (
         <ThemeProvider theme={store.theme}>{children}</ThemeProvider>
       )}

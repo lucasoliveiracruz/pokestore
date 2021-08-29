@@ -5,8 +5,10 @@ import React, {
   useContext,
   useEffect,
 } from "react";
+import { PokeStores } from "../models/PokeStores";
+import { useStore } from "./StoreContext";
 
-interface Product {
+export interface Product {
   id: string;
   title: string;
   image_url: string;
@@ -15,15 +17,17 @@ interface Product {
 }
 
 interface CartContext {
-  products: Product[];
+  cartProducts: Product[];
   addToCart(item: Omit<Product, "quantity">): void;
   increment(id: string): void;
   decrement(id: string): void;
 }
 
-const CART_STORAGE = "@PokeStore:cart";
-
 const CartContext = createContext<CartContext>({} as CartContext);
+
+function getStoreCacheKey(store: PokeStores) {
+  return `@PokeStore:cart-${store}`;
+}
 
 function changeProductQuantity(id: string, products: any[], quantity = 1) {
   const newProducts = [] as Product[];
@@ -39,52 +43,59 @@ function changeProductQuantity(id: string, products: any[], quantity = 1) {
 }
 
 export function CartProvider({ children }: any) {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { currentStore } = useStore();
+
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     function loadCartItemsFromLocalStorage(): void {
-      const items = localStorage.getItem(CART_STORAGE);
+      const items = localStorage.getItem(getStoreCacheKey(currentStore));
 
       if (items && items.length > 0) {
-        setProducts(JSON.parse(items));
+        setCartProducts(JSON.parse(items));
       }
     }
     loadCartItemsFromLocalStorage();
-  }, []);
+  }, [currentStore]);
 
   useEffect(() => {
     function saveProductsOnLocalStorage(products: Product[]) {
-      localStorage.setItem(CART_STORAGE, JSON.stringify(products));
+      localStorage.setItem(
+        getStoreCacheKey(currentStore),
+        JSON.stringify(products)
+      );
     }
-    saveProductsOnLocalStorage(products);
-  }, [products]);
+    saveProductsOnLocalStorage(cartProducts);
+  }, [cartProducts, currentStore]);
 
   const addToCart = useCallback(
     (item: Omit<Product, "quantity">) => {
-      const newProducts = [...products, { ...item, quantity: 1 }];
-      setProducts(newProducts);
+      const newProducts = [...cartProducts, { ...item, quantity: 1 }];
+      setCartProducts(newProducts);
     },
-    [products]
+    [cartProducts]
   );
 
   const increment = useCallback(
     (id: string) => {
-      const newProducts = changeProductQuantity(id, products, 1);
-      setProducts(newProducts);
+      const newProducts = changeProductQuantity(id, cartProducts, 1);
+      setCartProducts(newProducts);
     },
-    [products]
+    [cartProducts]
   );
 
   const decrement = useCallback(
     (id: string) => {
-      const newProducts = changeProductQuantity(id, products, -1);
-      setProducts(newProducts);
+      const newProducts = changeProductQuantity(id, cartProducts, -1);
+      setCartProducts(newProducts);
     },
-    [products]
+    [cartProducts]
   );
 
   return (
-    <CartContext.Provider value={{ addToCart, increment, decrement, products }}>
+    <CartContext.Provider
+      value={{ addToCart, increment, decrement, cartProducts }}
+    >
       {children}
     </CartContext.Provider>
   );

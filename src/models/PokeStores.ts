@@ -1,3 +1,4 @@
+import { IconType } from "react-icons/lib";
 import { DefaultTheme } from "styled-components";
 import DefaultTranslations from "../translations/types";
 
@@ -9,8 +10,7 @@ export enum PokeStores {
 
 export interface PokeStoreConfig {
   name: string;
-  logo: string;
-  store: PokeStores;
+  logo: IconType;
 }
 
 export interface PokeStore {
