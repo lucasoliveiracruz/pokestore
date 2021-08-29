@@ -44,7 +44,8 @@ export function CartProvider({ children }: any) {
   useEffect(() => {
     function loadCartItemsFromLocalStorage(): void {
       const items = localStorage.getItem(CART_STORAGE);
-      if (items) {
+
+      if (items && items.length > 0) {
         setProducts(JSON.parse(items));
       }
     }
