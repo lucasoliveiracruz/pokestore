@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const SearchContainer = styled.label`
+interface SearchContainerProps {
+  fullWidth?: boolean;
+}
+
+export const SearchContainer = styled.label<SearchContainerProps>`
   display: flex;
   flex: 1;
   padding: 4px 8px;
@@ -13,6 +17,15 @@ export const SearchContainer = styled.label`
   height: 56px;
   align-items: center;
   justify-content: space-between;
+
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+      margin: 0px;
+      margin-top: 8px;
+      padding: 16px;
+    `}
 `;
 
 export const SearchInput = styled.input`
