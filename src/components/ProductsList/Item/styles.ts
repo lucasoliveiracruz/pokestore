@@ -10,7 +10,7 @@ export const Container = styled.div<ItemProps>`
   border: 1px solid ${({ theme }) => theme.color.shape};
 
   min-width: 320px;
-  max-width: 350px;
+  max-width: 320px;
 
   header {
     border-radius: 8px 8px 0px 0px;

@@ -1,18 +1,14 @@
 import React from "react";
-
 import { RiAddLine } from "react-icons/ri";
-import { useTheme } from "styled-components";
-import { PokemonProduct } from "../../services/types";
-
+import { PokemonProduct } from "../../../services/types";
 import { Container } from "./styles";
 
-
-interface CardItemProps {
+interface ItemProps {
   item: PokemonProduct;
+  onClickItem: (item: PokemonProduct) => void;
 }
 
-export function CardItem({ item }: CardItemProps) {
-  const theme = useTheme();
+export function Item({ item, onClickItem }: ItemProps) {
   return (
     <Container available>
       <header>
@@ -20,14 +16,18 @@ export function CardItem({ item }: CardItemProps) {
       </header>
       <section className="body">
         <h2>{item.name}</h2>
-        <p>Sem descrição</p>
+        {/* <p>Sem descrição</p> */}
         <p className="price">
           <b>{item.formattedPrice}</b>
         </p>
       </section>
       <section className="footer">
         <span>Adicionar ao carrinho</span>
-        <button type="button" className="icon" onClick={() => alert(`Você está comprando ${item.name}!`)}>
+        <button
+          type="button"
+          className="icon"
+          onClick={() => onClickItem(item)}
+        >
           <RiAddLine size={24} />
         </button>
       </section>
