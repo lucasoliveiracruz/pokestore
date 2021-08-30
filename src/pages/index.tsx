@@ -10,7 +10,7 @@ import { PokeStores } from "../models/PokeStores";
 import { ProductsService } from "../services";
 import { PokemonProduct } from "../services/types";
 import { capitalize } from "../utils/capitalize";
-import { Container } from "./styles";
+import { Container } from "../styles/Store.styles";
 
 function randomTheme() {
   const validStores = [PokeStores.FIRE, PokeStores.GRASS, PokeStores.WATER];
@@ -18,7 +18,7 @@ function randomTheme() {
   return random;
 }
 
-export default function Home() {
+export default function Store() {
   const { currentStore, setStore } = useStore();
   const { addToCart } = useCart();
 

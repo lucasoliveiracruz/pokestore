@@ -1,10 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import {
-  PokemonByTypeResponse,
-  PokeApiService,
-  Pokemon,
-  PokemonDetail,
-} from "./types";
+import { PokeApiService, Pokemon, PokemonDetail } from "./types";
 
 const fallbackImage = "/fallback_image.jpeg";
 
@@ -14,7 +9,7 @@ export default class PokeApi implements PokeApiService {
 
   private constructor() {
     this.api = axios.create({
-      baseURL: "https://pokeapi.co/api/v2",
+      baseURL: process.env.NEXT_PUBLIC_POKEAPI_BASE_URL,
     });
   }
 
