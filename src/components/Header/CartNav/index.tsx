@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { useTheme } from "styled-components";
 import { useCart } from "../../../contexts/CartContext";
@@ -8,14 +9,19 @@ export function CartNav() {
   const theme = useTheme();
   const { cartProducts } = useCart();
 
-  function getCounter() {
-    return cartProducts?.length > 9 ? "+9" : cartProducts?.length ?? 0;
-  }
+  const totalItemsInCart = useMemo(() => {
+    const totalItems = cartProducts.reduce(
+      (acc, product) => acc + product.quantity,
+      0
+    );
+
+    return totalItems;
+  }, [cartProducts]);
 
   return (
     <NavContainer>
       <RiShoppingCartLine color={theme.color.white} size="28" />
-      <span>{getCounter()}</span>
+      <span>{totalItemsInCart}</span>
     </NavContainer>
   );
 }
