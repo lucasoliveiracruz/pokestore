@@ -7,10 +7,16 @@ interface ItemProps {
 export const Container = styled.div<ItemProps>`
   background: #fff;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.color.shape};
 
   min-width: 320px;
   max-width: 320px;
+  transition: box-shadow 0.2s;
+  box-shadow: 1px 2px 8px 2px ${({ theme }) => theme.color.gray_light};
+
+  &:hover {
+    box-shadow: 1px 2px 8px 2px ${({ theme }) => theme.color.primary};
+    cursor: pointer;
+  }
 
   header {
     border-radius: 8px 8px 0px 0px;
@@ -71,12 +77,21 @@ export const Container = styled.div<ItemProps>`
       border-radius: 50%;
       display: flex;
       border: none;
-      transition: 0.1s;
+      transition: all 0.2s;
+
       svg {
         color: ${({ theme }) => theme.color.gray_dark};
       }
       & + button {
         margin-left: 6px;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
       }
     }
   }

@@ -34,6 +34,19 @@ export default createGlobalStyle`
     justify-content: flex-end;
   }
 
+  .ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .ReactModal__Overlay--after-open{
+      opacity: 1;
+  }
+
+  .ReactModal__Overlay--before-close{
+      opacity: 0;
+  }
+  
   .cart-modal-content {
     background-color: #fff;
     width: 100%;
@@ -41,6 +54,9 @@ export default createGlobalStyle`
     position: relative;
     border-radius: 0.25rem;
     padding: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 
     @media(max-width: 700px) {
       padding: 0px;

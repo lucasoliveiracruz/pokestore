@@ -44,6 +44,7 @@ export default function Store() {
       </Head>
       <Container>
         <Header onCartClick={toggleCartVisible} />
+
         <Button onClick={() => setStore(randomTheme())}>Trocar de loja</Button>
         <ProductsList
           products={products}

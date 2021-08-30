@@ -31,6 +31,7 @@ export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
       onRequestClose={toggleCartVisible}
       overlayClassName="cart-modal-overlay"
       className="cart-modal-content"
+      closeTimeoutMS={200}
     >
       <button
         type="button"

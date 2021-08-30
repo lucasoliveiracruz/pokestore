@@ -61,7 +61,7 @@ export const Container = styled.div<ContainerProps>`
       border-radius: 8px;
       display: flex;
       border: none;
-      transition: 0.1s;
+      transition: all 0.1s;
 
       svg {
         color: ${({ theme }) => theme.color.primary};
@@ -69,6 +69,14 @@ export const Container = styled.div<ContainerProps>`
 
       & + button {
         margin-top: 6px;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
       }
     }
   }
@@ -83,6 +91,14 @@ export const Container = styled.div<ContainerProps>`
 
     svg {
       color: ${({ theme }) => theme.color.primary};
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
     }
   }
 `;
