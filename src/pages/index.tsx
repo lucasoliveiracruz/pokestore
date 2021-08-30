@@ -1,17 +1,16 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import Head from "next/head";
+import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
+import { Cart } from "../components/Cart";
 import { Header } from "../components/Header";
 import { ProductsList } from "../components/ProductsList";
+import { useCart } from "../contexts/CartContext";
 import { useStore } from "../contexts/StoreContext";
 import { PokeStores } from "../models/PokeStores";
 import { ProductsService } from "../services";
 import { PokemonProduct } from "../services/types";
-
+import { capitalize } from "../utils/capitalize";
 import { Container } from "./styles";
-
-import { useCart } from "../contexts/CartContext";
-import { Cart } from "../components/Cart";
 
 function randomTheme() {
   const validStores = [PokeStores.FIRE, PokeStores.GRASS, PokeStores.WATER];
@@ -21,7 +20,7 @@ function randomTheme() {
 
 export default function Home() {
   const { currentStore, setStore } = useStore();
-  const { cartProducts, increment, decrement, addToCart } = useCart();
+  const { addToCart } = useCart();
 
   const [products, setProducts] = useState<PokemonProduct[]>([]);
 
@@ -35,6 +34,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>{capitalize(currentStore)} | PokeStore</title>
+      </Head>
       <Container>
         <Header />
         <Button onClick={() => setStore(randomTheme())}>Trocar de loja</Button>
