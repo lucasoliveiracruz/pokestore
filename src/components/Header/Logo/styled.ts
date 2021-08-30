@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 
   width: 100px;
+  transition: transform 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 
   h1 {
     font-weight: bold;

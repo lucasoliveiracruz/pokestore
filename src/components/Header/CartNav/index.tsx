@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { useTheme } from "styled-components";
 import { useCart } from "../../../contexts/CartContext";
+import { Tooltip } from "../../ToolTip";
 
 import { Container } from "./styles";
 
@@ -18,14 +19,21 @@ export function CartNav({ onCartClick }: CartNavProps) {
       (acc, product) => acc + product.quantity,
       0
     );
-
     return totalItems;
   }, [cartProducts]);
 
+  const tooltipTitle = useMemo(() => {
+    if (totalItemsInCart === 1) return "1 item no carrinho";
+    if (totalItemsInCart > 1) return `${totalItemsInCart} itens no carrinho`;
+    return "Nenhum item adicionado";
+  }, [totalItemsInCart]);
+
   return (
-    <Container onClick={onCartClick}>
-      <RiShoppingCartLine color={theme.color.white} size="28" />
-      <span>{totalItemsInCart}</span>
-    </Container>
+    <Tooltip title={tooltipTitle}>
+      <Container onClick={onCartClick}>
+        <RiShoppingCartLine color={theme.color.white} size="28" />
+        <span>{totalItemsInCart}</span>
+      </Container>
+    </Tooltip>
   );
 }

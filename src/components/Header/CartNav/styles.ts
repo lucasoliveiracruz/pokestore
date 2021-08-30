@@ -5,6 +5,11 @@ export const Container = styled.button`
   margin: 0 6px;
   background-color: transparent;
   border: 0;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   span {
     position: absolute;
