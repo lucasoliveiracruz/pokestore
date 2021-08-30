@@ -33,7 +33,7 @@ export const Container = styled.div`
 
   .item-actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 
@@ -49,8 +49,21 @@ export const Container = styled.div`
       }
 
       & + button {
-        margin-top: 6px;
+        margin-left: 6px;
       }
+    }
+  }
+
+  .remove-button {
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    border: none;
+    transition: 0.1s;
+    margin-left: 16px;
+
+    svg {
+      color: ${({ theme }) => theme.color.primary};
     }
   }
 `;

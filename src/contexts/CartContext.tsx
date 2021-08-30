@@ -19,6 +19,7 @@ export interface Product {
 interface CartContext {
   cartProducts: Product[];
   addToCart(item: Omit<Product, "quantity">): void;
+  removeFromCart(id: string): void;
   increment(id: string): void;
   decrement(id: string): void;
 }
@@ -68,33 +69,43 @@ export function CartProvider({ children }: any) {
     saveProductsOnLocalStorage(cartProducts);
   }, [cartProducts, currentStore]);
 
-  const addToCart = useCallback(
-    (item: Omit<Product, "quantity">) => {
-      const newProducts = [...cartProducts, { ...item, quantity: 1 }];
-      setCartProducts(newProducts);
-    },
-    [cartProducts]
-  );
+  const addToCart = (item: Omit<Product, "quantity">) => {
+    const productInCart = cartProducts.some(
+      (product) => product.id === item.id
+    );
 
-  const increment = useCallback(
-    (id: string) => {
-      const newProducts = changeProductQuantity(id, cartProducts, 1);
-      setCartProducts(newProducts);
-    },
-    [cartProducts]
-  );
+    if (productInCart) {
+      return increment(item.id);
+    }
 
-  const decrement = useCallback(
-    (id: string) => {
-      const newProducts = changeProductQuantity(id, cartProducts, -1);
-      setCartProducts(newProducts);
-    },
-    [cartProducts]
-  );
+    const newProducts = [...cartProducts, { ...item, quantity: 1 }];
+    setCartProducts(newProducts);
+  };
+
+  const increment = (id: string) => {
+    const newProducts = changeProductQuantity(id, cartProducts, 1);
+    setCartProducts(newProducts);
+  };
+
+  const decrement = (id: string) => {
+    const newProducts = changeProductQuantity(id, cartProducts, -1);
+    setCartProducts(newProducts);
+  };
+
+  const removeFromCart = (id: string) => {
+    const newItems = cartProducts.filter((product) => product.id !== id);
+    setCartProducts(newItems);
+  };
 
   return (
     <CartContext.Provider
-      value={{ addToCart, increment, decrement, cartProducts }}
+      value={{
+        addToCart,
+        increment,
+        decrement,
+        cartProducts,
+        removeFromCart,
+      }}
     >
       {children}
     </CartContext.Provider>

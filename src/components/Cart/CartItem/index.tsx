@@ -1,4 +1,4 @@
-import { RiAddLine, RiSubtractLine } from "react-icons/ri";
+import { RiAddLine, RiSubtractLine, RiDeleteBinLine } from "react-icons/ri";
 import { Product } from "../../../contexts/CartContext";
 import { formatPrice } from "../../../utils/formatPrice";
 
@@ -7,6 +7,7 @@ import { Container } from "./styles";
 interface CartItemProps {
   product: Product;
   onAddClick: (id: string) => void;
+  onDecrementClick: (id: string) => void;
   onRemoveClick: (id: string) => void;
 }
 
@@ -14,6 +15,7 @@ export function CartItem({
   product,
   onAddClick,
   onRemoveClick,
+  onDecrementClick,
 }: CartItemProps) {
   const total = formatPrice(product.price * product.quantity || 0);
 
@@ -33,10 +35,17 @@ export function CartItem({
         <button type="button" onClick={() => onAddClick(product.id)}>
           <RiAddLine size={20} />
         </button>
-        <button type="button" onClick={() => onRemoveClick(product.id)}>
+        <button type="button" onClick={() => onDecrementClick(product.id)}>
           <RiSubtractLine size={20} />
         </button>
       </div>
+      <button
+        className="remove-button"
+        type="button"
+        onClick={() => onRemoveClick(product.id)}
+      >
+        <RiDeleteBinLine size={20} />
+      </button>
     </Container>
   );
 }
