@@ -10,8 +10,8 @@ import { PokemonProduct } from "../services/types";
 
 import { Container } from "./styles";
 
-import { CartItem } from "../components/Cart/CartItem";
 import { useCart } from "../contexts/CartContext";
+import { Cart } from "../components/Cart";
 
 function randomTheme() {
   const validStores = [PokeStores.FIRE, PokeStores.GRASS, PokeStores.WATER];
@@ -39,27 +39,7 @@ export default function Home() {
         <Header />
         <Button onClick={() => setStore(randomTheme())}>Trocar de loja</Button>
 
-        <div
-          style={{
-            borderColor: "blue",
-            borderWidth: 1,
-            borderStyle: "solid",
-            padding: 24,
-            borderRadius: 8,
-            width: 500,
-          }}
-        >
-          <h2>Carrinho de compras</h2>
-
-          {cartProducts.map((product) => (
-            <CartItem
-              key={product.id}
-              product={product}
-              onAddClick={increment}
-              onRemoveClick={decrement}
-            />
-          ))}
-        </div>
+        <Cart />
 
         <ProductsList
           products={products}
