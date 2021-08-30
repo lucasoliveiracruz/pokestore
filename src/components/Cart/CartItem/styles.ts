@@ -1,6 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+interface ContainerProps {
+  isFirstItem: boolean;
+  isLastItem: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   background-color: #fff;
@@ -10,6 +15,19 @@ export const Container = styled.div`
   border-style: solid;
   padding: 12px;
   flex: 1;
+
+  ${({ isFirstItem }) =>
+    isFirstItem &&
+    css`
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+    `};
+  ${({ isLastItem }) =>
+    isLastItem &&
+    css`
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+    `};
 
   & + & {
     border-top-width: 0px;

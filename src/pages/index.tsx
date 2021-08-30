@@ -23,6 +23,7 @@ export default function Store() {
   const { addToCart } = useCart();
 
   const [products, setProducts] = useState<PokemonProduct[]>([]);
+  const [isCartVisible, setIsCartVisible] = useState(false);
 
   useEffect(() => {
     ProductsService.getAllPokemonProductsByType(currentStore).then(
@@ -32,17 +33,18 @@ export default function Store() {
     );
   }, [currentStore]);
 
+  function toggleCartVisible() {
+    setIsCartVisible((visible) => !visible);
+  }
+
   return (
     <>
       <Head>
         <title>{capitalize(currentStore)} | PokeStore</title>
       </Head>
       <Container>
-        <Header />
+        <Header onCartClick={toggleCartVisible} />
         <Button onClick={() => setStore(randomTheme())}>Trocar de loja</Button>
-
-        <Cart />
-
         <ProductsList
           products={products}
           onClickItem={(item) =>
@@ -55,6 +57,11 @@ export default function Store() {
           }
         />
       </Container>
+
+      <Cart
+        isCartVisible={isCartVisible}
+        toggleCartVisible={toggleCartVisible}
+      />
     </>
   );
 }

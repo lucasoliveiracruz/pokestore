@@ -5,7 +5,11 @@ import { SearchBox } from "./SearchBox";
 import { Container, InlineContent, Content, RightContent } from "./styles";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
-export function Header() {
+interface HeaderProps {
+  onCartClick: () => void;
+}
+
+export function Header({ onCartClick }: HeaderProps) {
   const isWideVersion = useMediaQuery("(min-width: 700px)");
 
   return (
@@ -16,7 +20,7 @@ export function Header() {
           {isWideVersion && <SearchBox />}
 
           <RightContent>
-            <CartNav />
+            <CartNav onCartClick={onCartClick} />
           </RightContent>
         </InlineContent>
         {!isWideVersion && <SearchBox fullWidth />}

@@ -1,24 +1,75 @@
+import { useMemo } from "react";
+import { RiCloseLine, RiShoppingCartLine } from "react-icons/ri";
+import ReactModal from "react-modal";
 import { useCart } from "../../contexts/CartContext";
+import { formatPrice } from "../../utils/formatPrice";
 import { CartItem } from "./CartItem";
 
-import { Container } from "./styles";
+import { ModalBody, ModalFooter } from "./styles";
 
-export function Cart() {
+interface CartProps {
+  toggleCartVisible: () => void;
+  isCartVisible: boolean;
+}
+
+export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
   const { cartProducts, increment, decrement, removeFromCart } = useCart();
 
-  return (
-    <Container>
-      <h2>Carrinho de compras</h2>
+  const cartTotal = useMemo(() => {
+    const total = cartProducts.reduce(
+      (acc, currentProduct) =>
+        acc + currentProduct.price * currentProduct.quantity,
+      0
+    );
 
-      {cartProducts.map((product) => (
-        <CartItem
-          key={product.id}
-          product={product}
-          onAddClick={increment}
-          onDecrementClick={decrement}
-          onRemoveClick={removeFromCart}
-        />
-      ))}
-    </Container>
+    return formatPrice(total);
+  }, [cartProducts]);
+
+  return (
+    <ReactModal
+      isOpen={isCartVisible}
+      onRequestClose={toggleCartVisible}
+      overlayClassName="cart-modal-overlay"
+      className="cart-modal-content"
+    >
+      <button
+        type="button"
+        onClick={toggleCartVisible}
+        className="cart-modal-close"
+      >
+        <RiCloseLine size={24} />
+      </button>
+      <ModalBody>
+        <h2>Meu carrinho</h2>
+
+        {cartProducts.length <= 0 && (
+          <span>Nenhum item adicionado ao carrinho.</span>
+        )}
+
+        {cartProducts.map((product, index) => {
+          const isFirstItem = index === 0;
+          const isLastItem = cartProducts.length === index - 1;
+          return (
+            <CartItem
+              key={product.id}
+              product={product}
+              onAddClick={increment}
+              onDecrementClick={decrement}
+              onRemoveClick={removeFromCart}
+              isFirstItem={isFirstItem}
+              isLastItem={isLastItem}
+            />
+          );
+        })}
+      </ModalBody>
+      <ModalFooter>
+        <span>
+          Total: <b>{cartTotal}</b>
+        </span>
+        <button type="button" className="icon" onClick={toggleCartVisible}>
+          Finalizar pedido <RiShoppingCartLine />
+        </button>
+      </ModalFooter>
+    </ReactModal>
   );
 }

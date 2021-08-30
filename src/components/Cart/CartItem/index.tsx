@@ -7,6 +7,8 @@ import { Container } from "./styles";
 
 interface CartItemProps {
   product: Product;
+  isFirstItem: boolean;
+  isLastItem: boolean;
   onAddClick: (id: string) => void;
   onDecrementClick: (id: string) => void;
   onRemoveClick: (id: string) => void;
@@ -14,6 +16,8 @@ interface CartItemProps {
 
 export function CartItem({
   product,
+  isFirstItem,
+  isLastItem,
   onAddClick,
   onRemoveClick,
   onDecrementClick,
@@ -22,7 +26,7 @@ export function CartItem({
   const isWideVersion = useMediaQuery("(min-width: 700px)");
 
   return (
-    <Container>
+    <Container isFirstItem={isFirstItem} isLastItem={isLastItem}>
       <img src={product.image_url} alt={product.title} />
       <div className="item-info">
         <h3>{product.title}</h3>

@@ -3,9 +3,13 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { useTheme } from "styled-components";
 import { useCart } from "../../../contexts/CartContext";
 
-import { NavContainer } from "./styles";
+import { Container } from "./styles";
 
-export function CartNav() {
+interface CartNavProps {
+  onCartClick: () => void;
+}
+
+export function CartNav({ onCartClick }: CartNavProps) {
   const theme = useTheme();
   const { cartProducts } = useCart();
 
@@ -19,9 +23,9 @@ export function CartNav() {
   }, [cartProducts]);
 
   return (
-    <NavContainer>
+    <Container onClick={onCartClick}>
       <RiShoppingCartLine color={theme.color.white} size="28" />
       <span>{totalItemsInCart}</span>
-    </NavContainer>
+    </Container>
   );
 }

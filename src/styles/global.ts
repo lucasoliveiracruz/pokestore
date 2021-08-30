@@ -22,4 +22,41 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+  
+  .cart-modal-overlay {
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .cart-modal-content {
+    background-color: #fff;
+    width: 100%;
+    max-width: 576px;
+    position: relative;
+    border-radius: 0.25rem;
+    padding: 12px;
+
+    @media(max-width: 700px) {
+      padding: 0px;
+      max-width: 100%;
+    }
+  }
+
+  .cart-modal-close {
+    position: absolute;
+    right:1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background-color: transparent;
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
 `;
