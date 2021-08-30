@@ -1,5 +1,6 @@
 import { RiAddLine, RiSubtractLine, RiDeleteBinLine } from "react-icons/ri";
 import { Product } from "../../../contexts/CartContext";
+import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { formatPrice } from "../../../utils/formatPrice";
 
 import { Container } from "./styles";
@@ -18,6 +19,7 @@ export function CartItem({
   onDecrementClick,
 }: CartItemProps) {
   const total = formatPrice(product.price * product.quantity || 0);
+  const isWideVersion = useMediaQuery("(min-width: 700px)");
 
   return (
     <Container>
@@ -39,13 +41,15 @@ export function CartItem({
           <RiSubtractLine size={20} />
         </button>
       </div>
-      <button
-        className="remove-button"
-        type="button"
-        onClick={() => onRemoveClick(product.id)}
-      >
-        <RiDeleteBinLine size={20} />
-      </button>
+      {isWideVersion && (
+        <button
+          className="remove-button"
+          type="button"
+          onClick={() => onRemoveClick(product.id)}
+        >
+          <RiDeleteBinLine size={20} />
+        </button>
+      )}
     </Container>
   );
 }

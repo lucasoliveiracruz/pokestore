@@ -33,9 +33,10 @@ export const Container = styled.div`
 
   .item-actions {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: 24px;
 
     button {
       padding: 8px;
@@ -49,7 +50,7 @@ export const Container = styled.div`
       }
 
       & + button {
-        margin-left: 6px;
+        margin-top: 6px;
       }
     }
   }
