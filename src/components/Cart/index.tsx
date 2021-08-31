@@ -71,14 +71,16 @@ export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
           );
         })}
       </ModalBody>
-      <ModalFooter>
-        <span>
-          Total: <b>{cartTotal}</b>
-        </span>
-        <button type="button" className="icon" onClick={handleCheckout}>
-          Finalizar pedido <RiShoppingCartLine />
-        </button>
-      </ModalFooter>
+      {cartProducts.length > 0 && (
+        <ModalFooter>
+          <span>
+            Total: <b>{cartTotal}</b>
+          </span>
+          <button type="button" className="icon" onClick={handleCheckout}>
+            Finalizar pedido <RiShoppingCartLine />
+          </button>
+        </ModalFooter>
+      )}
     </ReactModal>
   );
 }
