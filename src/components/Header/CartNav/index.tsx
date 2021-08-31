@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { useTheme } from "styled-components";
 import { useCart } from "../../../contexts/CartContext";
+import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { Tooltip } from "../../ToolTip";
 
 import { Container } from "./styles";
@@ -12,6 +13,7 @@ interface CartNavProps {
 
 export function CartNav({ onCartClick }: CartNavProps) {
   const theme = useTheme();
+  const isWideVersion = useMediaQuery("(min-width: 700px)");
   const { cartProducts } = useCart();
 
   const totalItemsInCart = useMemo(() => {
@@ -29,7 +31,7 @@ export function CartNav({ onCartClick }: CartNavProps) {
   }, [totalItemsInCart]);
 
   return (
-    <Tooltip title={tooltipTitle}>
+    <Tooltip showTooltip={isWideVersion} title={tooltipTitle}>
       <Container onClick={onCartClick}>
         <RiShoppingCartLine color={theme.color.white} size="28" />
         <span>{totalItemsInCart}</span>

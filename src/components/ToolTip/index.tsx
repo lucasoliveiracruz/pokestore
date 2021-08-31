@@ -5,9 +5,18 @@ interface TooltipProps {
   title: string;
   className?: string;
   children: ReactNode;
+  showTooltip?: boolean;
 }
 
-export function Tooltip({ children, className, title }: TooltipProps) {
+export function Tooltip({
+  children,
+  className,
+  title,
+  showTooltip,
+}: TooltipProps) {
+  if (!showTooltip) {
+    return <>{children}</>;
+  }
   return (
     <Container className={className}>
       {children}

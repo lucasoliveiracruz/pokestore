@@ -95,4 +95,37 @@ export const Container = styled.div<ItemProps>`
       }
     }
   }
+
+  @media (max-width: 700px) {
+    min-width: 250px;
+    max-width: 250px;
+
+    header {
+      height: 124px;
+      padding: 0;
+    }
+
+    section.body {
+      padding: 18px;
+      h2 {
+        font-size: 18px;
+      }
+      .price {
+        font-size: 20px;
+      }
+    }
+
+    section.footer {
+      padding: 12px 18px;
+      button {
+        padding: 4px;
+        svg {
+          font-size: 10px;
+        }
+      }
+      span {
+        font-size: 16px;
+      }
+    }
+  }
 `;
