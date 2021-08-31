@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { Button } from "../components/Button";
+// import { Button } from "../components/Button";
 import { Cart } from "../components/Cart";
 import { Header } from "../components/Header";
 import { ProductsList } from "../components/ProductsList";
@@ -12,11 +12,11 @@ import { PokemonProduct } from "../services/types";
 import { Container } from "../styles/Store.styles";
 import { capitalize } from "../utils/capitalize";
 
-function randomTheme() {
-  const validStores = [PokeStores.FIRE, PokeStores.GRASS, PokeStores.WATER];
-  const random = validStores[Math.floor(Math.random() * validStores.length)];
-  return random;
-}
+// function randomTheme() {
+//   const validStores = [PokeStores.FIRE, PokeStores.GRASS, PokeStores.WATER];
+//   const random = validStores[Math.floor(Math.random() * validStores.length)];
+//   return random;
+// }
 
 export default function Store() {
   const { currentStore, setStore } = useStore();
@@ -45,7 +45,7 @@ export default function Store() {
       <Container>
         <Header onCartClick={toggleCartVisible} />
 
-        <Button onClick={() => setStore(randomTheme())}>Trocar de loja</Button>
+        {/* <Button onClick={() => setStore(randomTheme())}>Trocar de loja</Button> */}
         <ProductsList
           products={products}
           onClickItem={(item) =>
