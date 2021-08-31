@@ -1,10 +1,5 @@
-import React, {
-  createContext,
-  useState,
-  useCallback,
-  useContext,
-  useEffect,
-} from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { Cart } from "../components/Cart";
 import { PokeStores } from "../models/PokeStores";
 import { useStore } from "./StoreContext";
 
@@ -23,6 +18,7 @@ interface CartContext {
   increment(id: string): void;
   decrement(id: string): void;
   checkout(): Promise<void>;
+  toggleCartVisible(): void;
 }
 
 const CartContext = createContext<CartContext>({} as CartContext);
@@ -47,6 +43,7 @@ function changeProductQuantity(id: string, products: any[], quantity = 1) {
 export function CartProvider({ children }: any) {
   const { currentStore } = useStore();
 
+  const [isCartVisible, setIsCartVisible] = useState(false);
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -69,6 +66,10 @@ export function CartProvider({ children }: any) {
     }
     saveProductsOnLocalStorage(cartProducts);
   }, [cartProducts, currentStore]);
+
+  function toggleCartVisible() {
+    setIsCartVisible((visible) => !visible);
+  }
 
   const addToCart = (item: Omit<Product, "quantity">) => {
     const productInCart = cartProducts.some(
@@ -111,9 +112,14 @@ export function CartProvider({ children }: any) {
         cartProducts,
         removeFromCart,
         checkout,
+        toggleCartVisible,
       }}
     >
       {children}
+      <Cart
+        isCartVisible={isCartVisible}
+        toggleCartVisible={toggleCartVisible}
+      />
     </CartContext.Provider>
   );
 }

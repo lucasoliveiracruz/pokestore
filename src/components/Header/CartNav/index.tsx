@@ -7,14 +7,10 @@ import { Tooltip } from "../../ToolTip";
 
 import { Container } from "./styles";
 
-interface CartNavProps {
-  onCartClick: () => void;
-}
-
-export function CartNav({ onCartClick }: CartNavProps) {
+export function CartNav() {
   const theme = useTheme();
   const isWideVersion = useMediaQuery("(min-width: 700px)");
-  const { cartProducts } = useCart();
+  const { cartProducts, toggleCartVisible } = useCart();
 
   const totalItemsInCart = useMemo(() => {
     const totalItems = cartProducts.reduce(
@@ -32,7 +28,7 @@ export function CartNav({ onCartClick }: CartNavProps) {
 
   return (
     <Tooltip showTooltip={isWideVersion} title={tooltipTitle}>
-      <Container onClick={onCartClick}>
+      <Container onClick={toggleCartVisible}>
         <RiShoppingCartLine color={theme.color.white} size="28" />
         <span>{totalItemsInCart}</span>
       </Container>
