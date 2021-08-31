@@ -23,7 +23,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
   
-  .cart-modal-overlay {
+  .cart-modal-overlay, .success-modal-overlay {
     background-color: rgba(0,0,0,0.5);
     position: fixed;
     top: 0;
@@ -31,7 +31,15 @@ export default createGlobalStyle`
     right: 0;
     left: 0;
     display: flex;
+  }
+
+  .cart-modal-overlay {
     justify-content: flex-end;
+  }
+
+  .success-modal-overlay {
+    justify-content: center;
+    align-items: center;
   }
 
   .ReactModal__Overlay {
@@ -57,6 +65,24 @@ export default createGlobalStyle`
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    @media(max-width: 700px) {
+      padding: 0px;
+      max-width: 100%;
+    }
+  }
+
+  .success-modal-content {
+    background-color: #fff;
+    width: 100%;
+    max-width: 50%;
+    position: relative;
+    border-radius: 0.25rem;
+    padding: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
 
     @media(max-width: 700px) {
       padding: 0px;

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { RiCloseLine, RiShoppingCartLine } from "react-icons/ri";
 import ReactModal from "react-modal";
 import { useCart } from "../../contexts/CartContext";
+import { useModal } from "../../contexts/ModalContext";
 import { formatPrice } from "../../utils/formatPrice";
 import { CartItem } from "./CartItem";
 
@@ -13,7 +14,14 @@ interface CartProps {
 }
 
 export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
-  const { cartProducts, increment, decrement, removeFromCart } = useCart();
+  const { cartProducts, ...cart } = useCart();
+  const { toggleModal } = useModal();
+
+  async function handleCheckout() {
+    await cart.checkout();
+    toggleCartVisible();
+    toggleModal();
+  }
 
   const cartTotal = useMemo(() => {
     const total = cartProducts.reduce(
@@ -54,9 +62,9 @@ export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
             <CartItem
               key={product.id}
               product={product}
-              onAddClick={increment}
-              onDecrementClick={decrement}
-              onRemoveClick={removeFromCart}
+              onAddClick={cart.increment}
+              onDecrementClick={cart.decrement}
+              onRemoveClick={cart.removeFromCart}
               isFirstItem={isFirstItem}
               isLastItem={isLastItem}
             />
@@ -67,7 +75,7 @@ export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
         <span>
           Total: <b>{cartTotal}</b>
         </span>
-        <button type="button" className="icon" onClick={toggleCartVisible}>
+        <button type="button" className="icon" onClick={handleCheckout}>
           Finalizar pedido <RiShoppingCartLine />
         </button>
       </ModalFooter>

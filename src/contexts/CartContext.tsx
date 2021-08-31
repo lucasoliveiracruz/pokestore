@@ -22,6 +22,7 @@ interface CartContext {
   removeFromCart(id: string): void;
   increment(id: string): void;
   decrement(id: string): void;
+  checkout(): Promise<void>;
 }
 
 const CartContext = createContext<CartContext>({} as CartContext);
@@ -97,6 +98,10 @@ export function CartProvider({ children }: any) {
     setCartProducts(newItems);
   };
 
+  const checkout = async () => {
+    setCartProducts([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -105,6 +110,7 @@ export function CartProvider({ children }: any) {
         decrement,
         cartProducts,
         removeFromCart,
+        checkout,
       }}
     >
       {children}

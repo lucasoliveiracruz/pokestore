@@ -9,8 +9,8 @@ import { useStore } from "../contexts/StoreContext";
 import { PokeStores } from "../models/PokeStores";
 import { ProductsService } from "../services";
 import { PokemonProduct } from "../services/types";
-import { capitalize } from "../utils/capitalize";
 import { Container } from "../styles/Store.styles";
+import { capitalize } from "../utils/capitalize";
 
 function randomTheme() {
   const validStores = [PokeStores.FIRE, PokeStores.GRASS, PokeStores.WATER];
