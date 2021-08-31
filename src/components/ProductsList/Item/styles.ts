@@ -25,14 +25,9 @@ export const Container = styled.div<ItemProps>`
     transition: 0.3s opacity;
     text-align: center;
     padding: 16px 0px;
-
-    img {
-      pointer-events: none;
-      user-select: none;
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   section.body {

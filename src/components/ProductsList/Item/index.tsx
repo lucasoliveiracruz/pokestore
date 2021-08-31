@@ -2,6 +2,7 @@ import React from "react";
 import { RiAddLine } from "react-icons/ri";
 import { PokemonProduct } from "../../../services/types";
 import { Container } from "./styles";
+import Image from "next/image";
 
 interface ItemProps {
   item: PokemonProduct;
@@ -12,7 +13,13 @@ export function Item({ item, onClickItem }: ItemProps) {
   return (
     <Container available>
       <header>
-        <img src={item.image_url} alt={item.name} />
+        <Image
+          objectFit="contain"
+          width="150%"
+          height="150%"
+          src={item.image_url}
+          alt={item.name}
+        />
       </header>
       <section className="body">
         <h2>{item.name}</h2>
