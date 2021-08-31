@@ -31,6 +31,7 @@ export default createGlobalStyle`
     right: 0;
     left: 0;
     display: flex;
+    z-index: 999;
   }
 
   .cart-modal-overlay {

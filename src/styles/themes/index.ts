@@ -1,3 +1,4 @@
+import { getTranslation } from "../../translations";
 import { PokeStores } from "../../models/PokeStores";
 
 import { GiTreeBranch } from "react-icons/gi";
@@ -9,20 +10,27 @@ import { theme as waterTheme } from "./water";
 import { theme as grassTheme } from "./grass";
 
 export function getStoreTheme(store: PokeStores) {
-  const translations = {
+  const storeTranslations = getTranslation(store);
+  const storeConfig = {
     [PokeStores.FIRE]: {
       theme: fireTheme,
       logo: RiFireFill,
+      translations: storeTranslations,
+      loader: "/loaders/fire.gif",
     },
     [PokeStores.GRASS]: {
       theme: grassTheme,
       logo: GiTreeBranch,
+      translations: storeTranslations,
+      loader: "/loaders/grass.gif",
     },
     [PokeStores.WATER]: {
       theme: waterTheme,
       logo: IoWaterSharp,
+      translations: storeTranslations,
+      loader: "/loaders/water.gif",
     },
   };
 
-  return translations[store];
+  return storeConfig[store];
 }

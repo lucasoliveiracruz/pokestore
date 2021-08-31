@@ -34,14 +34,13 @@ export function StoreProvider({
   }, [pokeStore]);
 
   function changeStore(store: PokeStores): void {
-    const { theme, logo } = getStoreTheme(store);
-    const translations = getTranslation(store);
+    const { theme, translations, logo, loader } = getStoreTheme(store);
 
     setCurrentStore(store);
     setStore({
       theme,
       translations,
-      config: { name: store.toLocaleLowerCase(), logo },
+      config: { name: store.toLocaleLowerCase(), logo, loader },
     });
   }
 

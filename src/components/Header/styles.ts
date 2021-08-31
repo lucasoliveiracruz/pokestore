@@ -10,6 +10,7 @@ export const Container = styled.header<ContainerProps>`
   background-color: ${({ theme }) => theme.color.primary};
   position: sticky;
   top: 0;
+  z-index: 20;
 
   > div {
     max-width: 1480px;
