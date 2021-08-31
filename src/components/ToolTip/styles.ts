@@ -16,7 +16,7 @@ export const Container = styled.div`
     top: calc(100% + 12px);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.4s;
+    transition: opacity 0.2s;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;

@@ -10,6 +10,7 @@ export const ModalBody = styled.div`
 
   h1 {
     margin: 24px 0;
+    text-align: center;
   }
 
   p {
