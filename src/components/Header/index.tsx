@@ -6,7 +6,11 @@ import { Container, InlineContent, RightContent } from "./styles";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { useScrollOffset } from "../../hooks/useScrollOffset";
 
-export function Header() {
+interface HeaderProps {
+  onSearch: (search: string) => void;
+}
+
+export function Header({ onSearch }: HeaderProps) {
   const isWideVersion = useMediaQuery("(min-width: 700px)");
   const { offset } = useScrollOffset(500);
 
@@ -15,13 +19,13 @@ export function Header() {
       <div>
         <InlineContent>
           <Logo />
-          {isWideVersion && <SearchBox />}
+          {isWideVersion && <SearchBox onSearch={onSearch} />}
 
           <RightContent>
             <CartNav />
           </RightContent>
         </InlineContent>
-        {!isWideVersion && <SearchBox fullWidth />}
+        {!isWideVersion && <SearchBox onSearch={onSearch} fullWidth />}
       </div>
     </Container>
   );
