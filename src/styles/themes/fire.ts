@@ -18,7 +18,7 @@ export const theme: DefaultTheme = {
   },
 
   fonts: {
-    medium: "RobotoSlab-Medium",
-    regular: "RobotoSlab-Regular",
+    medium: "Roboto",
+    regular: "Roboto",
   },
 };

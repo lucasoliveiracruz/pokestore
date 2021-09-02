@@ -1,34 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+    <img alt="Aircnc" title="#delicinha" src=".github/logo.png" width="250px" />
+</h1>
 
-## Getting Started
+<h4 align="center">
+  PokeStore Challenge
+</h4>
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/locrz/pokestore.svg">
 
-First, run the development server:
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/locrz/pokestore.svg">
+  
+  <a href="https://github.com/locrz/pokestore/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/locrz/pokestore.svg">
+  </a>
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-temas">Temas e Váriaveis de ambiente</a>&nbsp;&nbsp;&nbsp;
+</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+<p align="center" style="display: flex">
+  <img alt="Frontend" style="object-fit: contain" src=".github/store-web.png" width="60%">
+  <img alt="Frontend" style="object-fit: contain" src=".github/store-mobile.png" width="30%">
+</p>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Tecnologias
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Esse projeto foi desenvolvido usando as seguintes tecnologias:
 
-## Learn More
+- [NextJS](https://nextjs.org/) - como framework pois possibilita uma experiência de desenvolvimento incrível.
+- [TypeScript](https://www.typescriptlang.org/) - pois facilita e permite o projeto escalar, dando melhor suporte no desenvolvimento e manutenção
+- [ContextAPI](https://nextjs.org/) - para gerenciamento de estados, pois é disponível nativamente no React
+- [React Query](https://react-query.tanstack.com/) - para gerenciamento das requisições e controle de cache, pois é uma ferramenta poderosa, permitindo o gerenciamento e controle de todas requisições
+- [Styled Components](https://styled-components.com/) - para estilos e temas
+- [Axios](https://github.com/axios/axios) - para requisições à api
+- [Jest](https://jestjs.io/pt-BR/) - para testes 
 
-To learn more about Next.js, take a look at the following resources:
+O Deploy foi feito na [Vercel](https://vercel.com/home).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para listagem dos pokemons, foi utilizada a api pública [PokeAPI](https://pokeapi.co/).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 💻 Projeto
 
-## Deploy on Vercel
+PokeStore é um projeto que visa criar uma loja Pokémon virtual, com a listagem de produtos, carrinho de compras e finalizar a compra.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+O projeto possui as seguintes funcionalidades:
+- Catálogo de produtos
+- Carrinho lateral
+- Resumo do carrinho
+- 3 lojas com estilos e tipos diferentes de Pokémon
+- Barra de busca para filtrar os Pokémon
+- Botão de finalizar compra, reiniciando o processo de compra
+- Modal de obrigado ao finalizar compra
+- Salvar os dados da compra do usuário localmente para não perdê-las ao atualizar a página
+- Testes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+É possível acessar o projeto a partir das seguintes urls:
+- grass: https://grass-pokestore.vercel.app/
+- fire: https://fire-pokestore.vercel.app/
+- water: https://water-pokestore.vercel.app/
+
+## 🔖 Temas e Variáveis de ambiente
+
+O projeto contempla diferentes estilos de lojas, que podem ser alterados mudando somente uma variável de ambiente, podendo assumir os seguintes valores:
+
+- `NEXT_PUBLIC_POKESTORE_THEME=fire`
+- `NEXT_PUBLIC_POKESTORE_THEME=water`
+- `NEXT_PUBLIC_POKESTORE_THEME=grass`
+
+
+
+Feito com orgulho! Por [Lucas Oliveira](https://www.linkedin.com/in/lucasoliveiracruz).

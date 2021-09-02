@@ -10,7 +10,7 @@ export default interface DefaultTranslations {
     total: string;
     cart: string;
     conclude: string;
-    order: string;
+    empty: string;
   };
   modal_success: {
     title: string;

@@ -9,14 +9,15 @@ const fireTranslations: DefaultTranslations = {
     add: "Adicionar",
   },
   cart: {
-    total: "Total",
-    cart: "Carrinho",
-    conclude: "Finalizar",
-    order: "Resumo do pedido",
+    total: "Total:",
+    cart: "Meu carrinho",
+    conclude: "Finalizar pedido",
+    empty: "Nenhum item adicionado ao carrinho",
   },
   modal_success: {
-    title: "Obrigado!!!",
-    message: "Você ganhou {{}} de volta!",
+    title: "Uhull! Compra finalizada!",
+    message:
+      "Obrigado por comprar com a gente! Seus produtos serão embalados e logo estarão com você!",
     button: "Legal!",
   },
 };

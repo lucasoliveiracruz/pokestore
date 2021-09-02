@@ -12,11 +12,12 @@ const waterTranslations: DefaultTranslations = {
     total: "Total",
     cart: "Carrinho",
     conclude: "Finalizar",
-    order: "Resumo do pedido",
+    empty: "Nenhum item adicionado ao carrinho",
   },
   modal_success: {
-    title: "Obrigado!!!",
-    message: "Você ganhou {{}} de volta!",
+    title: "Uhull! Compra finalizada!",
+    message:
+      "Obrigado por comprar com a gente! Seus produtos serão embalados e logo estarão com você!",
     button: "Legal!",
   },
 };

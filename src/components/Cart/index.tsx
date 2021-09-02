@@ -3,6 +3,7 @@ import { RiCloseLine, RiShoppingCartLine } from "react-icons/ri";
 import ReactModal from "react-modal";
 import { useCart } from "../../contexts/CartContext";
 import { useModal } from "../../contexts/ModalContext";
+import { useStore } from "../../contexts/StoreContext";
 import { formatPrice } from "../../utils/formatPrice";
 import { CartItem } from "./CartItem";
 
@@ -16,6 +17,7 @@ interface CartProps {
 export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
   const { cartProducts, ...cart } = useCart();
   const { toggleModal } = useModal();
+  const { store } = useStore();
 
   async function handleCheckout() {
     await cart.checkout();
@@ -49,10 +51,10 @@ export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
         <RiCloseLine size={24} />
       </button>
       <ModalBody>
-        <h2>Meu carrinho</h2>
+        <h2>{store.translations.cart.cart}</h2>
 
         {cartProducts.length <= 0 && (
-          <span>Nenhum item adicionado ao carrinho.</span>
+          <span>{store.translations.cart.empty}</span>
         )}
 
         {cartProducts.map((product, index) => {
@@ -74,10 +76,10 @@ export function Cart({ toggleCartVisible, isCartVisible }: CartProps) {
       {cartProducts.length > 0 && (
         <ModalFooter>
           <span>
-            Total: <b>{cartTotal}</b>
+            {store.translations.cart.total} <b>{cartTotal}</b>
           </span>
           <button type="button" className="icon" onClick={handleCheckout}>
-            Finalizar pedido <RiShoppingCartLine />
+            {store.translations.cart.conclude} <RiShoppingCartLine />
           </button>
         </ModalFooter>
       )}
