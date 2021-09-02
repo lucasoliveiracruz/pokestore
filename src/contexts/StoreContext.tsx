@@ -40,7 +40,7 @@ export function StoreProvider({
     setStore({
       theme,
       translations,
-      config: { name: store.toLocaleLowerCase(), logo, loader },
+      config: { logo, loader },
     });
   }
 

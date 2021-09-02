@@ -7,8 +7,8 @@ import { Container } from "./styles";
 
 interface CartItemProps {
   product: Product;
-  isFirstItem: boolean;
-  isLastItem: boolean;
+  isFirstItem?: boolean;
+  isLastItem?: boolean;
   onAddClick: (id: string) => void;
   onDecrementClick: (id: string) => void;
   onRemoveClick: (id: string) => void;
@@ -48,6 +48,7 @@ export function CartItem({
       {isWideVersion && (
         <button
           className="remove-button"
+          test-id="remove"
           type="button"
           onClick={() => onRemoveClick(product.id)}
         >

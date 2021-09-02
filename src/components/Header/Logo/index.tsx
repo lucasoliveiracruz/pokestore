@@ -5,14 +5,14 @@ import { Container } from "./styled";
 import Link from "next/link";
 
 export function Logo() {
-  const { store } = useStore();
+  const { store, currentStore } = useStore();
   const Icon = store.config.logo;
 
   return (
     <Link href="/" passHref>
       <Container>
         <h1>
-          <Icon size={24} /> {capitalize(store.config.name)}
+          <Icon size={24} /> {capitalize(currentStore)}
         </h1>
       </Container>
     </Link>

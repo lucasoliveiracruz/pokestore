@@ -9,7 +9,6 @@ export enum PokeStores {
 }
 
 export interface PokeStoreConfig {
-  name: string;
   logo: IconType;
   loader: string;
 }
